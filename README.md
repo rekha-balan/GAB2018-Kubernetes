@@ -99,6 +99,30 @@ This command creates a proxy between your development system and the Kubernetes 
 
 More info on AKS Kubernetes Dashboard UI: https://docs.microsoft.com/en-us/azure/aks/kubernetes-dashboard
 
+### Upgrade Kubernetes and Scale the Nodes
+
+#### Upgradae an AKS Cluster
+
+Before upgrading a cluster, use the az aks get-upgrades command to check which Kubernetes releases are available for upgrade.
+
+``` az aks get-upgrades --name myAKSCluster --resource-group myResourceGroup --output table
+
+Take note of the version you want to upgrade to use with the "az aks upgrade" command
+
+During the upgrade process, nodes are carefully [cordoned and drained][kubernetes-drain] to minimize disruption to running applications. Before initiating a cluster upgrade, ensure that you have enough additional compute capacity to handle your workload as cluster nodes are added and removed.
+
+``` az aks upgrade --name myAKSCluster --resource-group myResourceGroup --kubernetes-version 1.8.2 ```
+
+You can now confirm the upgrade was successful with the az aks show command
+
+``` az aks show --name $CLUSTER_NAME --resource-group $NAME --output table ```
+
+More info about AKS Upgrade: https://docs.microsoft.com/en-us/azure/aks/upgrade-cluster
+
+#### Scaling your AKS Cluster
+
+
+
 
 
 
