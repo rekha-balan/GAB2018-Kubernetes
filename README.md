@@ -1,4 +1,4 @@
-# GAB2018- "Delivering modern web applications with Kubernetes and OpenSource Technologies"
+# Global Azure Bootcamp Bogota 2018 - "Delivering modern web applications with Kubernetes and OpenSource Technologies"
 
 Resources for GAB2018 Talk: Delivering modern web applications with Kubernetes and OpenSource Technologies
 
