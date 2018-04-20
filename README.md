@@ -20,7 +20,7 @@ If you want to inspect the code, requirements and steps to build the image pleas
 
 ## Azure Container Registry Demo
 
-## Create Azure Container Registry
+### Create Azure Container Registry
 
 Prerequisites: Install azure-cli on your OS and login to your account with ```az login ``` or use Cloud Shell from Azure portal
 You can create an Azure Container Registry (ACR) to storage your Docker images in a private repository.
@@ -33,7 +33,7 @@ Then create the Container Registry specifying the name of the Resource Group cre
 
 ``` az acr create --resource-group myResourceGroup --name myContainerRegistryName --sku Basic ```
 
-## Push the catgifapp Docker image to ACR
+### Push the catgifapp Docker image to ACR
 
 First you need to login to ACR 
 
