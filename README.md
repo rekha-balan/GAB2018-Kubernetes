@@ -89,7 +89,13 @@ Also you can run the kubectl cluster info command to see more details about your
 
 ``` kubectl cluster-info ```
 
+### Kubernetes Dashboard UI
 
+The Azure CLI can be used to start the Kubernetes Dashboard. Use the "az aks browse" command to start the Kubernetes dashboard. When running this command, replace the resource group and cluster name
+
+``` az aks browse --resource-group myResourceGroup --name myAKSCluster ```
+
+This command creates a proxy between your development system and the Kubernetes API, and opens a web browser to the Kubernetes dashboard.
 
 
 
