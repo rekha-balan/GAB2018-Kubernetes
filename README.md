@@ -97,5 +97,9 @@ The Azure CLI can be used to start the Kubernetes Dashboard. Use the "az aks bro
 
 This command creates a proxy between your development system and the Kubernetes API, and opens a web browser to the Kubernetes dashboard.
 
+More info on AKS Kubernetes Dashboard UI: https://docs.microsoft.com/en-us/azure/aks/kubernetes-dashboard
+
+
+
 
 
