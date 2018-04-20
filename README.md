@@ -1,17 +1,24 @@
-# GAB2018-Kubernetes
+# GAB2018- "Delivering modern web applications with Kubernetes and OpenSource Technologies"
+
 Resources for GAB2018 Talk: Delivering modern web applications with Kubernetes and OpenSource Technologies
 
-You can use these files to build a Docker image with a Python flask application that displays a random cat gif each time that the web page is refreshed.
+Files used for Demos of this talk
 
-## Build the Docker Image
+## Containers Demo
+
+You can use the files on /ContainersDemo to build a Docker image with a Python flask application that displays a random cat gif each time that the web page is refreshed.
+
+### Build the Docker Image
 
 If you want to inspect the code, requirements and steps to build the image please look at the Dockerfile content.
 
 ``` docker build -t catgifapp https://github.com/vcach/GAB2018-Kubernetes.git#master:ContainersDemo ```
 
-## Run Docker container locally
+### Run Docker container locally
 
 ``` docker container run --name catgif01 -d -p 5000:5000 catgifapp ```
+
+## Azure Container Registry Demo
 
 ## Create Azure Container Registry
 
