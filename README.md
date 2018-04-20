@@ -55,6 +55,41 @@ Verify that the image was pushed to ACR by listing images in the repository
 
 ```az acr repository list --name <acrName> --output table ```
 
+## Kubernetes - AKS Demo
+
+If it's possible, do these steps using Azure Cloud Shell, this shell is preconfigured with all the software you need to complete this process. If you are an advanced user, consider to install azure-cli and kubectl on your machine to complete the steps from your computer directly.
+
+More info: https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough
+
+Tip: Use the same Resource Group created on ACR steps to create the AKS cluster
+
+### Create an AKS cluster
+
+Use the az aks create command to create an AKS cluster. The following example creates a cluster named myAKSCluster with one node.
+
+``` az aks create --resource-group myResourceGroup --name myAKSCluster --node-count 1 --generate-ssh-keys ```
+
+### Connect to the Cluster and get info
+
+To manage a Kubernetes cluster, use kubectl, the Kubernetes command-line client.
+
+If you're using Azure Cloud Shell, kubectl is already installed. If you want to install it locally, use the az aks install-cli command from azure-cli
+
+```az aks install-cli ```
+
+To configure kubectl to connect to your Kubernetes cluster, use the az aks get-credentials command. This step downloads credentials and configures the Kubernetes CLI to use them
+
+``` az aks get-credentials --resource-group myResourceGroup --name myAKSCluster ```
+
+To verify the connection to your cluster, use the kubectl get command to return a list of the cluster nodes. Note that this can take a few minutes to appear
+
+```kubectl get nodes ```
+
+Also you can run the kubectl cluster info command to see more details about your cluster
+
+``` kubectl cluster-info ```
+
+
 
 
 
