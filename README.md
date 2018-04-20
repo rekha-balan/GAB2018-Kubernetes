@@ -7,7 +7,7 @@ You can use these files to build a Docker image with a Python flask application 
 
 If you want to inspect the code, requirements and steps to build the image please look at the Dockerfile content.
 
-``` docker build -t catgifapp https://github.com/vcach/GAB2018-Kubernetes.git ```
+``` docker build -t catgifapp https://github.com/vcach/GAB2018-Kubernetes.git#master:ContainersDemo ```
 
 ## Run Docker container locally
 
