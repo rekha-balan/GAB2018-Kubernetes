@@ -105,7 +105,7 @@ More info on AKS Kubernetes Dashboard UI: https://docs.microsoft.com/en-us/azure
 
 Before upgrading a cluster, use the az aks get-upgrades command to check which Kubernetes releases are available for upgrade.
 
-``` az aks get-upgrades --name myAKSCluster --resource-group myResourceGroup --output table
+``` az aks get-upgrades --name myAKSCluster --resource-group myResourceGroup --output table ```
 
 Take note of the version you want to upgrade to use with the "az aks upgrade" command
 
@@ -115,11 +115,29 @@ During the upgrade process, nodes are carefully [cordoned and drained][kubernete
 
 You can now confirm the upgrade was successful with the az aks show command
 
-``` az aks show --name $CLUSTER_NAME --resource-group $NAME --output table ```
+``` az aks show --name myAKSCluster --resource-group myResourceGroup --output table ```
 
 More info about AKS Upgrade: https://docs.microsoft.com/en-us/azure/aks/upgrade-cluster
 
 #### Scaling your AKS Cluster
+
+Imagine a scenario where your realize that your existing cluster is at capacity and you need to scale it out to add more nodes in order to increase capacity and be able to deploy more PODS.
+
+Check to see number of current nodes running
+
+``` kubectl get nodes ```
+
+Scale out AKS cluster to accomodate the demand
+
+``` az aks scale -g myResourceGroup -n myAKSCluster --node-count 4 ```
+
+Note this may take some time. Good time to get some coffee
+
+Check to see if the new nodes are deployed and "Ready"
+
+``` kubectl get nodes ```
+
+
 
 
 
