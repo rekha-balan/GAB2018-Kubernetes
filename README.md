@@ -145,7 +145,29 @@ Check to see if the new nodes are deployed and "Ready"
 
 ***
 
-## Automation Tools - Draft Demo
+## Automation Tools - Helm & Draft Demo
+
+### Helm
+
+Helm is a tool for managing Kubernetes charts. Charts are packages of pre-configured Kubernetes resources.
+
+Use Helm to:
+
+    Find and use popular software packaged as Kubernetes charts
+    Share your own applications as Kubernetes charts
+    Create reproducible builds of your Kubernetes applications
+    Intelligently manage your Kubernetes manifest files
+    Manage releases of Helm packages
+    
+Helm is a tool that streamlines installing and managing Kubernetes applications. Think of it like apt/yum/homebrew for Kubernetes
+
+Install Helm is not part of the Demo but you need to install it first in order to use Draft and deploy our application to AKS. Review the info of this link to install Helm and configure it with your AKS cluster:
+
+https://docs.microsoft.com/en-us/azure/aks/kubernetes-helm
+
+Once Helm is installed and configured with your AKS Cluster you can continue to Draft
+
+### Draft
 
 Draft makes it easy to build applications that run on Kubernetes. Draft targets the "inner loop" of a developer's workflow: as they hack on code, but before code is committed to version control.
 
@@ -157,7 +179,77 @@ https://docs.microsoft.com/en-us/azure/aks/kubernetes-draft
 
 ### Use Draft with our catgifapp application
 
-Go to the folder where the code of the App reside
+Clone this repo
+
+```https://github.com/vcach/GAB2018-Kubernetes.git ```
+
+Go to the Folder Draft_Demo
+
+```cd Draft_Demo ```
+
+Use Draft to autogenerate a Dockerfile, a Helm chart, and a draft.toml file, which is the Draft configuration file.
+
+```draft create ```
+
+Verify the Output of the Dockerfile and compare it to the one in the ContainersDemo folder. 
+As you can see, draft is not totally accurate in the Dockerfile generation but you can use this file as a template to modify and do the necessary changes that meet your application requirements. Copy the content from /ContainersDemo/Dockerfile to the Dockerfile generated from Draft, should look like this:
+
+```
+# our base image
+FROM alpine:latest
+
+# Install python and pip
+RUN apk add --update py-pip
+
+# upgrade pip
+RUN pip install --upgrade pip
+
+# install Python modules needed by the Python app
+COPY requirements.txt /usr/src/app/
+RUN pip install --no-cache-dir -r /usr/src/app/requirements.txt
+
+# copy files required for the app to run
+COPY app.py /usr/src/app/
+COPY templates/index.html /usr/src/app/templates/
+
+# tell the port number the container should expose
+EXPOSE 5000
+
+# run the application
+CMD ["python", "/usr/src/app/app.py"]
+
+```
+Once the Dockerfile is ready you can use Draft to deploy your app on Kubernetes with "draft up". This command builds the Dockerfile to create a container image, pushes the image to ACR, and finally installs the Helm chart to start the application in AKS.
+
+The first time this is run, pushing and pulling the container image may take some time; once the base layers are cached, the time taken is dramatically reduced
+
+``` draft up ```
+
+### Test the Application
+
+To test the application, use the "draft connect" command. This command proxies a connection to the Kubernetes pod allowing a secure local connection. When complete, the application can be accessed on the provided URL.
+
+In some cases, it can take a few minutes for the container image to be downloaded and the application to start. If you receive an error when accessing the application, retry the connection
+
+```draft connect ```
+
+Output:
+
+```
+Connecting to your app...SUCCESS...Connect to your app on localhost:46143
+Starting log streaming...
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+== Spark has ignited ...
+>> Listening on 0.0.0.0:4567
+```
+Now test your application by browsing to http://localhost:46143 (for the preceding example; your port may be different). When finished testing the application use Control+C to stop the proxy connection
+
+More info about how to use Draft: https://docs.microsoft.com/en-us/azure/aks/kubernetes-draft
+
+
+
 
 
 
