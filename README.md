@@ -4,6 +4,8 @@ Resources for GAB2018 Talk: Delivering modern web applications with Kubernetes a
 
 Files used for Demos of this talk
 
+***
+
 ## Containers Demo
 
 You can use the files on /ContainersDemo to build a Docker image with a Python flask application that displays a random cat gif each time that the web page is refreshed.
@@ -17,6 +19,8 @@ If you want to inspect the code, requirements and steps to build the image pleas
 ### Run Docker container locally
 
 ``` docker container run --name catgif01 -d -p 5000:5000 catgifapp ```
+
+***
 
 ## Azure Container Registry Demo
 
@@ -54,6 +58,8 @@ Finally, use docker push to push the image to the ACR instance
 Verify that the image was pushed to ACR by listing images in the repository
 
 ```az acr repository list --name <acrName> --output table ```
+
+***
 
 ## Kubernetes - AKS Demo
 
@@ -137,7 +143,21 @@ Check to see if the new nodes are deployed and "Ready"
 
 ``` kubectl get nodes ```
 
+***
 
+## Automation Tools - Draft Demo
+
+Draft makes it easy to build applications that run on Kubernetes. Draft targets the "inner loop" of a developer's workflow: as they hack on code, but before code is committed to version control.
+
+Using two simple commands, developers can now begin hacking on container-based applications without requiring Docker or even installing Kubernetes themselves.
+
+For this Demo you first need to install Draft and make some configurations to make it work with your Azure Container Registry. As these steps are not part of the Demo, review the info of this link to install Draft and configure it with your ACR:
+
+https://docs.microsoft.com/en-us/azure/aks/kubernetes-draft
+
+### Use Draft with our catgifapp application
+
+Go to the folder where the code of the App reside
 
 
 
